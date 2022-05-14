@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";//hook
 import { VStack, FormControl,FormLabel,Input,InputGroup, InputRightElement,Button} from '@chakra-ui/react'
 import axios from "axios";
 function Logintab() {
- 
+ const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
    const [loading,setLoading]=useState(false);
@@ -50,10 +50,10 @@ function Logintab() {
               position:"top",
               
             });
-            localStorage.setItem("loginInfo",JSON.stringify(data));
+            localStorage.setItem("userInfo",JSON.stringify(data));
             setLoading(false)
+            navigate("/chats")  
             return;
-            //navigate("/chats")==>goto navigate page
           
 
       } catch(error){

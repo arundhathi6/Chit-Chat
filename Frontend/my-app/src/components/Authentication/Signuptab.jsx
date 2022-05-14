@@ -69,8 +69,9 @@ function Signuptab() {
               });
               localStorage.setItem("userInfo",JSON.stringify(data));
               setLoading(false)
+              
+              navigate("/chats")  
               return;
-              //navigate("/chats")==>goto navigate page
             
 
         } catch(error){

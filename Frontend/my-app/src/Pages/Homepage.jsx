@@ -1,8 +1,18 @@
 import React from 'react';
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import Logintab from "../components/Authentication/Logintab";
 import Signuptab from "../components/Authentication/Signuptab";
 import {Container,Box,Text,Tabs,Tab,TabList,TabPanels,TabPanel} from '@chakra-ui/react';
 function Home() {
+  const navigate = useNavigate();
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    if(user){
+    navigate("/") //navigate("/")
+    
+    }
+    },[])
   return (
     <div>
      <Container>
@@ -15,7 +25,7 @@ function Home() {
      p={4} 
       borderRight="lg"
       borderWidth="1px">
-  <Text fontSize="2xl" fontWeight="bold" color='darkviolet'>ANIRUDH</Text>
+  <Text fontSize="2xl" fontWeight="bold" color='darkviolet'>CHIT-CHAT</Text>
 </Box >
 <Box 
  bg='white'
