@@ -50,8 +50,13 @@ catch(err){
 
 const GetAllusers = async(req,res)=>{
     const Keyword = req.query.search?
-        {$or:[ {name:{$regex:req.query.search,$options:"i"}},//?{$or:[{field:{}},{field:{}}]}:{}
-        {email:{$regex:req.query.search,$options:"i"}} ]}:{};
+    {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
 const users = await User.find(Keyword).find({_id:{$ne:req.user._id}})
 //.find({_id:{$ne:req.user._id}})
 return res.status(201).send(users)

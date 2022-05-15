@@ -10,8 +10,8 @@ function Chatpage() {
   return (
     <div style={{width:"100%"}}>
       {user && <SideBar/>}
-      <Box w="100%" h="91.5vh" p="100px">
-      <Flex justifyContent="space-between" alignItem="center">
+      <Box w="100%" h="91.5vh">
+      <Flex>
      
          {user && <MyChats/>} 
         {user && <ChatBox/>} 

@@ -25,7 +25,7 @@ function Home() {
      p={4} 
       borderRight="lg"
       borderWidth="1px">
-  <Text fontSize="2xl" fontWeight="bold" color='darkviolet'>CHIT-CHAT</Text>
+  <Text fontSize="2xl" fontWeight="bold" color='darkviolet' textAlign="center">CHIT-CHAT</Text>
 </Box >
 <Box 
  bg='white'

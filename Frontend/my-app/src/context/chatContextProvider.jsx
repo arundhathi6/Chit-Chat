@@ -5,6 +5,9 @@ import {Navigate} from "react-router-dom";
 const ChatProvider=({children})=>{
 //const navigate=useNavigate();
 const [user,setUser] =useState();
+const [selectedChat,setSelectedChat] =useState();
+const [chats,setChats] =useState([]);
+
 useEffect(()=>{
 const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 setUser(userInfo);
@@ -13,7 +16,7 @@ if(!userInfo){
 <Navigate to ="/" />
 }
 },[])
-return <ChatContext.Provider value={{user,setUser}}>{children}</ChatContext.Provider>
+return <ChatContext.Provider value={{user,setUser,selectedChat,setSelectedChat,chats,setChats}}>{children}</ChatContext.Provider>
 }
 
 //in order to make it available to other part of our app we need to make a hook.
