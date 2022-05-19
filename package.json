@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "chit-chat",
   "version": "1.0.0",
   "description": "",
   "main": "backend/src/index.js",

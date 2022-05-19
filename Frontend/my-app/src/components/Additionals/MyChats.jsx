@@ -18,14 +18,16 @@ function MyChats({fetchAgain}) {
 
   const toast = useToast();
 
-  function getSenderPicture(loggedUser,users){
-    return users[0]._id ===loggedUser.user._id?users[1].picture:users[0].picture;
-  }
+ 
 
  function getSender(loggedUser,users){
 
 return users[0]._id===loggedUser.user._id?users[1].name :users[0].name;
 
+}
+
+function getSenderPicture(loggedUser,users){
+  return users[0]._id ===loggedUser.user._id?users[1].picture:users[0].picture;
 }
   const fetchChats = async () => {
     // console.log(user._id);
@@ -36,7 +38,7 @@ return users[0]._id===loggedUser.user._id?users[1].name :users[0].name;
         },
       };
 
-      const { data } = await axios.get("http://localhost:5666/chat", config);//show on UI My chat box
+      const { data } = await axios.get("https://my-mern-chit-chat-app.herokuapp.com/chat", config);//show on UI My chat box
       //console.log("chat established",data)
       setChats(data);
       //console.log("Chats",chats)

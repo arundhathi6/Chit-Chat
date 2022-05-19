@@ -52,7 +52,7 @@ function Signuptab() {
             };
 
             const {data} = await axios.post(
-                "http://localhost:5666/register", 
+                "https://my-mern-chit-chat-app.herokuapp.com/register", 
                 {name:name,
                 email:email,
                 password:password,

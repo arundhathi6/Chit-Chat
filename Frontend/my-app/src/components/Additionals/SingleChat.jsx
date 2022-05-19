@@ -11,7 +11,8 @@ import {useNavigate} from "react-router-dom"
  import io from "socket.io-client";
  import {UpdateGroupChatModal} from "./UpdateGroupChatModal";
  import { ChatState } from "../../context/chatContextProvider";
- const ENDPOINT = "https://my-mern-chit-chat-app.herokuapp.com/"; // "https://localhost:5666"; -> Before deployment
+ const ENDPOINT = "https://my-mern-chit-chat-app.herokuapp.com/"
+ //https://my-mern-chit-chat-app.herokuapp.com/
  var socket, selectedChatCompare;
 
  const SingleChat = ({ fetchAgain, setFetchAgain}) => {
@@ -27,7 +28,7 @@ import {useNavigate} from "react-router-dom"
   useEffect(() => {
     fetchMessages();
   selectedChatCompare = selectedChat;
-  console.log("selectedChatCompare",selectedChatCompare)
+  //console.log("selectedChatCompare",selectedChatCompare)
     // eslint-disable-next-line
   }, [selectedChat]);
 
@@ -92,7 +93,7 @@ function getSenderPicture(loggedUser,users){
 
       setLoading(true);
 
-      const { data } = await axios.get(`http://localhost:5666/message/${selectedChat._id}`,
+      const { data } = await axios.get(`https://my-mern-chit-chat-app.herokuapp.com/message/${selectedChat._id}`,
         config
       );
       setMessages(data);
@@ -126,7 +127,7 @@ function getSenderPicture(loggedUser,users){
           },
         };
         setNewMessage("");
-        const { data } = await axios.post("http://localhost:5666/message" ,
+        const { data } = await axios.post("https://my-mern-chit-chat-app.herokuapp.com/message" ,
           {
             content: newMessage,
             chatId: selectedChat,

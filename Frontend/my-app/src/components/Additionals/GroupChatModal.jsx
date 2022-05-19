@@ -75,8 +75,8 @@ import {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const { data } = await axios.get(`http://localhost:5666/users?search=${search}`, config);
-        console.log("groupmodal",data);
+        const { data } = await axios.get(`https://my-mern-chit-chat-app.herokuapp.com/users?search=${search}`, config);
+        //console.log("groupmodal",data);
         setLoading(false);
         setSearchResult(data);
         return;
@@ -115,7 +115,7 @@ import {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const { data } = await axios.post(`http://localhost:5666/group`,
+        const { data } = await axios.post(`https://my-mern-chit-chat-app.herokuapp.com/group`,
          
           {
             name: groupChatName,
