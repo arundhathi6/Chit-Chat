@@ -1,6 +1,6 @@
 const express = require("express");
 const {Register,Login,GetAllusers} = require("./src/controllers/authControllers")
-const {accessChat,fetchChat,createGroup,renameGroup,removeGroup,addGroup} = require("./src/controllers/chatControllers")
+const {accessChat,fetchChat,createGroup,renameGroup,removeGroup,addGroup,sendMessage,allMessages} = require("./src/controllers/chatControllers")
 const {authorizeBefore} = require("./src/middlewares/authmiddleware");
 const cors = require("cors")
 const app = express();
@@ -18,4 +18,8 @@ app.post("/group",authorizeBefore,createGroup);
 app.put("/rename",authorizeBefore,renameGroup);
 app.put("/groupremove",authorizeBefore,removeGroup);
 app.put("/groupadd",authorizeBefore,addGroup);
+
+//Message routers
+app.post("/message",authorizeBefore,sendMessage);
+app.get("/message/:chatId",authorizeBefore,allMessages);
 module.exports = app;

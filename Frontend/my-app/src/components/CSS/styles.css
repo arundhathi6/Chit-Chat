@@ -1,0 +1,21 @@
+.messages{
+    display:flex;
+    flex-direction:column;
+    overflow-y:scroll;
+    scrollbar-width:none;
+    height:420px;
+   width:100%;
+    
+}
+
+/* 
+
+ul {
+    list-style: none;
+} */
+
+h1::before { color: green;
+    font-size: 150%;
+    padding-right: 4px;
+    display: inline-block; width: 1em;
+    margin-left: -1em}

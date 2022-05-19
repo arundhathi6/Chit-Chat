@@ -7,6 +7,9 @@ import {ChevronDownIcon,BellIcon} from "@chakra-ui/icons";
 import {ProfileModelPopup} from "./ProfileModelPopup";
 import ChatLoading from "./ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
+import Notify from "./Notify.jsx"
+import NotificationBadge from "react-notification-badge";
+import { Effect } from "react-notification-badge";
 import {
   Drawer,
   DrawerBody,
@@ -21,7 +24,7 @@ import {
 import axios from "axios";
 
 function SideBar() {
-  const {user,setUser,selectedChat,setSelectedChat,chats,setChats} =ChatState();
+  const {user,setUser,selectedChat,setSelectedChat,chats,setChats,notification,setNotification} =ChatState();
   const navigate=useNavigate();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -33,6 +36,8 @@ function SideBar() {
       localStorage.removeItem("userInfo");
       navigate("/")
     }
+ 
+
     async function handleSearch(){
       if (!search) {
         toast({
@@ -85,9 +90,10 @@ function SideBar() {
           },
         };
         const { data } = await axios.post(`http://localhost:5666/chat`, { userId }, config);//create environment to chat with selected user
-        //console.log("data",data)
+        console.log("data",data)
        if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
         setSelectedChat(data);
+        
         setLoadingChat(false);
         onClose();
       } catch (error) {
@@ -110,7 +116,7 @@ function SideBar() {
         alignItem="center"
         bg="white"
         w="100%"
-        p="5px 10px 5px 10px"
+        p="5px 5px 5px 5px"
         borderWidth="5px"
         borderColor="aquamarine">
           <Flex justifyContent="space-between" alignItem="center">
@@ -119,37 +125,25 @@ function SideBar() {
              bg='pink.300' color='white'>
                 <Button variant="ghost" onClick={onOpen}>
                 <i class="fas fa-search"></i>&nbsp;&nbsp;
-                <Text d={{base:"none",md:"flex"}}>Search User</Text>
+                <Text display={{base:"none",md:"flex"}}>Search User</Text>
                 </Button> 
                 {/* d={{base:"none",md:"flex"}} when screen is small base is none else its visible */}
             </Tooltip>
             <Text fontSize="2xl"
             fontFamily="sans-serif"
-            color='magenta' fontWeight={'bold'}>CHIT-CHAT</Text>
+            color='darkviolet' fontWeight={'bold'}>CHIT-CHAT</Text>
             <div>
             <Menu>
             <MenuButton p={1}>
-              {/* <NotificationBadge
+              <NotificationBadge
                 count={notification.length}
                 effect={Effect.SCALE}
-              /> */}
+              />
               <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
             <MenuList pl={2}>
-              {/* {!notification.length && "No New Messages"}
-              {notification.map((notif) => (
-                <MenuItem
-                  key={notif._id}
-                  onClick={() => {
-                    setSelectedChat(notif.chat);
-                    setNotification(notification.filter((n) => n !== notif));
-                  }}
-                >
-                  {notif.chat.isGroupChat
-                    ? `New Message in ${notif.chat.chatName}`
-                    : `New Message from ${getSender(user, notif.chat.users)}`}
-                </MenuItem>
-              ))} */}
+              {!notification.length ? "No New Messages" :<MenuItem  className="notificationStyles"><Notify/></MenuItem>}
+             
             </MenuList>
           </Menu>
           <Menu>
@@ -197,12 +191,12 @@ function SideBar() {
               <ChatLoading />
             ) : (
              
-              searchResult?.map((user) => ( //looping through all searched results
+              searchResult?.map((u) => ( //looping through all searched results
              
                 <UserListItem
-                  key={user._id}
-                  user={user}
-                  handleFunction={() => accessChat(user._id)}
+                  key={u._id}
+                  user={u}
+                  handleFunction={() => accessChat(u._id)}
                 />
               ))
              
@@ -216,3 +210,4 @@ function SideBar() {
 }
 
 export default SideBar
+

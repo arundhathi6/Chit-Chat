@@ -71,6 +71,7 @@ function Signuptab() {
               setLoading(false)
               
               navigate("/chats")  
+              window. location. reload() 
               return;
             
 

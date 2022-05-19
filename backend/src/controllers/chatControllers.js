@@ -1,5 +1,6 @@
 const User = require("../models/UserModel")
 const Chat = require("../models/ChatModel")
+const Message = require("../models/MessageModel")
 //1.access chat
 const accessChat=async(req,res)=>{
     const { userId } = req.body;
@@ -84,11 +85,17 @@ const createGroup=async(req,res)=>{
       }
     
       users.push(req.user);
+      let new_users=[];
+      users.map((u)=>{
+        if(!new_users.includes(u._id)){
+          new_users.push(u)
+        }
+      })
     
       try {
         const groupChat = await Chat.create({
           chatName: req.body.name,
-          users: users,
+          users: new_users,
           isGroupChat: true,
           groupAdmin: req.user,
         });
@@ -177,6 +184,51 @@ const removeGroup=async(req,res)=>{
     
 }
 
+const sendMessage=async(req,res)=>{
+  const { content, chatId } = req.body;
 
+  if (!content || !chatId) {
+    console.log("Invalid data passed into request");
+    return res.status(400).send("Invalid data passed into request");
+  }
 
-module.exports ={accessChat,fetchChat,createGroup,renameGroup,removeGroup,addGroup}
+  var newMessage = {
+    sender: req.user._id,
+    content: content,
+    chat: chatId,
+  };
+
+  try {
+    var message = await Message.create(newMessage);
+
+    message = await message.populate("sender", "name picture");
+    message = await message.populate("chat");
+    message = await User.populate(message, {
+      path: "chat.users",
+      select: "name picture email",
+    });
+
+    await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: message });
+
+    return res.json(message);
+  } catch (error) {
+    //console.log(error.message)
+    return res.status(400).send(error.message);
+  }
+
+}
+
+const allMessages=async(req,res)=>{
+  try {
+    const messages = await Message.find({chat:req.params.chatId})
+      .populate("sender", "name picture email")
+      .populate("chat");
+    res.json(messages);
+  } catch (error) {
+    //console.log(error.message)
+    res.status(400).send(error.message);
+  }
+  
+}
+
+module.exports ={accessChat,fetchChat,createGroup,renameGroup,removeGroup,addGroup,sendMessage,allMessages}

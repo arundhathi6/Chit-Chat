@@ -2,7 +2,7 @@ import React from 'react'
 import {ChatState} from "../../context/chatContextProvider";
 import {Box,Avatar,Text,Flex} from "@chakra-ui/react"
 
-export default function UserListItem({handleFunction,user}) {
+export default function UserListItem({key,handleFunction,user}) {
   return (
     <>
   

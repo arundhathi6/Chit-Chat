@@ -5,13 +5,13 @@ const User = require("../models/UserModel.js");
 
 const authorizeBefore = async(req,res,next)=>{
     let token;
-    console.log("1")
+    //console.log("1")
     if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
         try{
-            console.log("2")
+            //console.log("2")
             token = req.headers.authorization.split(" ")[1]
             const decoded = jwt.verify(token,process.env.SECRET_KEY);
-            console.log(decoded)
+            //console.log(decoded)
             //req.user = await User.findById(decoded._id).select("-password")
             req.user=decoded.user;
             next();

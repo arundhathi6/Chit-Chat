@@ -1,11 +1,22 @@
 import React from 'react'
 import {useState,useEffect} from "react";
-import {Box,GroupChatModal,Button,Stack,useToast,Text,Flex} from "@chakra-ui/react";
+import {Box,Button,Stack,useToast,Text,Flex,Avatar} from "@chakra-ui/react";
 import {AddIcon} from "@chakra-ui/icons"
 import {ChatState} from "../../context/chatContextProvider";
-//import GroupChatModal from "./GroupChatModal"
+import GroupChatModal from "./GroupChatModal"
 import ChatLoading from "./ChatLoading";
 import axios from "axios";
+
+function getSenderPicture(loggedUser,users){
+  return users[0]._id ===loggedUser.user._id?users[1].picture:users[0].picture;
+}
+
+
+function getSender(loggedUser,users){
+  return users[0]._id ===loggedUser.user._id?users[1].name:users[0].name;
+
+}
+
 function MyChats({fetchAgain}) {
   const [loggedUser, setLoggedUser] = useState();
 
@@ -49,17 +60,18 @@ return users[0]._id===loggedUser.user._id?users[1].name :users[0].name;
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
     // eslint-disable-next-line
-  }, []);
+  }, [fetchAgain]);
 
   return (
     <Box
-      d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+      display={{ base: selectedChat ? "none" : "flex", md: "flex" }}
       flexDir="column"
       alignItems="center"
       p={3}
       bg="white"
       w={{ base: "100%", md: "30%" }}
-      h={"650px"}
+      h={"600px"}
+      marginLeft="10px"
       verticalAlign="top"
       borderRadius="lg"
       borderWidth="1px"
@@ -68,16 +80,17 @@ return users[0]._id===loggedUser.user._id?users[1].name :users[0].name;
       <Box
         pb={3}
         px={3}
-        fontSize={{ base: "28px", md: "30px" }}
-        fontFamily="Work sans"
+        fontSize={{ base: "20px", md: "26px" }}
+        fontFamily="sans-serif"
         d="flex"
         w="100%"
+        
         alignItems="center"
       
       >
         <Flex justifyContent="space-between">
         <span>My Chats</span>
-        {/* <GroupChatModal> */}
+        <GroupChatModal>
           <Button
             d="flex"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
@@ -85,16 +98,15 @@ return users[0]._id===loggedUser.user._id?users[1].name :users[0].name;
           >
             New Group Chat
           </Button>
-        {/* </GroupChatModal> */}
+        </GroupChatModal>
         </Flex>
       </Box>
       <Box
         d="flex"
         flexDir="column"
-        p={3}
         bg="#F8F8F8"
         w="100%"
-         h="90%"
+         h="87%"
         borderRadius="lg"
         overflowY="scroll"
       >
@@ -111,20 +123,30 @@ return users[0]._id===loggedUser.user._id?users[1].name :users[0].name;
                 py={2}
                 borderRadius="lg"
                 key={chat._id}
+                display="flex"
               >
+          { chat.length  &&   <Avatar
+          mr={2}
+          size="sm"
+          cursor="pointer"
+          name={getSender(user,chat.users)}
+          src={getSenderPicture(user,chat.users)}
+        />}
+        <div>
                 <Text>
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
                 </Text>
-                {/*{chat.latestMessage && (
+                {chat.latestMessage && (
                   <Text fontSize="xs">
                     <b>{chat.latestMessage.sender.name} : </b>
-                    {chat.latestMessage.content.length > 50
-                      ? chat.latestMessage.content.substring(0, 51) + "..."
+                    {chat.latestMessage.content.length > 25
+                      ? chat.latestMessage.content.substring(0, 26) + "..."
                       : chat.latestMessage.content}
                   </Text>
-                )} */}
+                )}
+                </div>
               </Box>
             ))}
           </Stack>

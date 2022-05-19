@@ -7,6 +7,7 @@ const ChatProvider=({children})=>{
 const [user,setUser] =useState();
 const [selectedChat,setSelectedChat] =useState();
 const [chats,setChats] =useState([]);
+const [notification,setNotification]=useState([]);
 
 useEffect(()=>{
 const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -16,7 +17,7 @@ if(!userInfo){
 <Navigate to ="/" />
 }
 },[])
-return <ChatContext.Provider value={{user,setUser,selectedChat,setSelectedChat,chats,setChats}}>{children}</ChatContext.Provider>
+return <ChatContext.Provider value={{user,setUser,selectedChat,setSelectedChat,chats,setChats,notification,setNotification}}>{children}</ChatContext.Provider>
 }
 
 //in order to make it available to other part of our app we need to make a hook.

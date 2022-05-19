@@ -52,7 +52,8 @@ function Logintab() {
             });
             localStorage.setItem("userInfo",JSON.stringify(data));
             setLoading(false)
-            navigate("/chats")  
+            navigate("/chats") 
+            window. location. reload()  
             return;
           
 
