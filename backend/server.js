@@ -3,8 +3,8 @@ const express = require("express")
 const connect = require("./src/config/db");
 const path=require("path")
 require("dotenv").config();
-//process.env.PORT || 
-const server = app.listen(5666,async(req,res)=>{
+const PORT=process.env.PORT || 5666;
+const server = app.listen(PORT,async(req,res)=>{
 try{
     await connect();
     console.log("Listening to port 5666..")
@@ -59,7 +59,7 @@ io.on("connection",(socket)=>{
       });
 
       socket.on("new message", (newMessageRecieved) => {
-          console.log("newMessageRecieved",newMessageRecieved)
+         // console.log("newMessageRecieved",newMessageRecieved)
         var chat = newMessageRecieved.chat;
     
         if (!chat.users) return console.log("chat.users not defined");

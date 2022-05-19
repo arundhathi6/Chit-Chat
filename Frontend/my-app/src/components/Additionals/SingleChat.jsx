@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom"
  import io from "socket.io-client";
  import {UpdateGroupChatModal} from "./UpdateGroupChatModal";
  import { ChatState } from "../../context/chatContextProvider";
- const ENDPOINT = "http://localhost:5666"; // "https://chit-chat.herokuapp.com"; -> After deployment
+ const ENDPOINT = "https://my-mern-chit-chat-app.herokuapp.com/"; // "https://localhost:5666"; -> Before deployment
  var socket, selectedChatCompare;
 
  const SingleChat = ({ fetchAgain, setFetchAgain}) => {
