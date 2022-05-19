@@ -1,6 +1,8 @@
 const app = require("./index");
+const express = require("express")
 const connect = require("./src/config/db");
-//require("dotenv").config();
+const path=require("path")
+require("dotenv").config();
 //process.env.PORT || 
 const server = app.listen(5666,async(req,res)=>{
 try{
@@ -12,6 +14,28 @@ catch(err){
 console.log("Err",err)
 }
 })
+
+
+// --------------------------deployment------------------------------
+
+const __dirname1 = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/Frontend/my-app/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname1, "Frontend","my-app", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+
+// --------------------------deployment------------------------------
+
+
+
 //*****CONNECTING TO SOCKET.IO FROM SERVER_SIDE********************** */
 const io=require("socket.io")(server,{
     pingTimeout:60000,
