@@ -7,15 +7,9 @@ import GroupChatModal from "./GroupChatModal"
 import ChatLoading from "./ChatLoading";
 import axios from "axios";
 
-function getSenderPicture(loggedUser,users){
-  return users[0]._id ===loggedUser.user._id?users[1].picture:users[0].picture;
-}
 
 
-function getSender(loggedUser,users){
-  return users[0]._id ===loggedUser.user._id?users[1].name:users[0].name;
 
-}
 
 function MyChats({fetchAgain}) {
   const [loggedUser, setLoggedUser] = useState();
@@ -23,6 +17,11 @@ function MyChats({fetchAgain}) {
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
 
   const toast = useToast();
+
+  function getSenderPicture(loggedUser,users){
+    return users[0]._id ===loggedUser.user._id?users[1].picture:users[0].picture;
+  }
+
 const getSender=(loggedUser,users)=>{
   // console.log("users[0]._id",users[0]._id)
   // console.log("users[1]._id",users[1]._id)
@@ -125,13 +124,13 @@ return users[0]._id===loggedUser.user._id?users[1].name :users[0].name;
                 key={chat._id}
                 display="flex"
               >
-          { chat.length  &&   <Avatar
+           <Avatar
           mr={2}
           size="sm"
           cursor="pointer"
           name={getSender(user,chat.users)}
           src={getSenderPicture(user,chat.users)}
-        />}
+        />
         <div>
                 <Text>
                   {!chat.isGroupChat
