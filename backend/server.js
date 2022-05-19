@@ -20,7 +20,7 @@ console.log("Err",err)
 
 const __dirname1 = path.resolve();
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "development") {
   app.use(express.static(path.join(__dirname1, "/Frontend/my-app/build")));
 
   app.get("*", (req, res) =>
