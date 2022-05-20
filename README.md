@@ -3,7 +3,7 @@
 
 <h3>About project: 🙌</h3>
 This chat application or platform enables users to instant message and connect with each other through their computers or mobile devices.
-<h1>Sign-up :-e</h1>
+<h1>Sign-up :-</h1>
 <img src="https://github.com/arundhathi6/Chit-Chat/blob/main/images/sign.png" />
 <h1>Login :-</h1>
 <img src="https://github.com/arundhathi6/Chit-Chat/blob/main/images/login.png"/>
