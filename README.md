@@ -31,8 +31,9 @@ This chat application or platform enables users to instant message and connect w
           <li>Real-time notification:User can see real-time notification if he/she is not online</li>
             <li>create group : User can create a group to chat</li>
    <li>exit group : User can exit a particular group if they are not interested</li>
-            <li>search:User can search other users and chat with them</li></ul>
-            <li>Logout : User can log out from the app</li>
+            <li>search:User can search other users and chat with them</li>
+<li>Logout : User can log out from the app</li></ul>
+            
 
    
    <h3>Tool kits used to build this project: 🛠</h3>
