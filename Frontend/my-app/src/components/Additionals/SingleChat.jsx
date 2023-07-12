@@ -93,7 +93,7 @@ function getSenderPicture(loggedUser,users){
 
       setLoading(true);
 
-      const { data } = await axios.get(`https://my-mern-chit-chat-app.herokuapp.com/message/${selectedChat._id}`,
+      const { data } = await axios.get(`https://chitchat-backend.onrender.com/message/${selectedChat._id}`,
         config
       );
       setMessages(data);
@@ -127,7 +127,7 @@ function getSenderPicture(loggedUser,users){
           },
         };
         setNewMessage("");
-        const { data } = await axios.post("https://my-mern-chit-chat-app.herokuapp.com/message" ,
+        const { data } = await axios.post("https://chitchat-backend.onrender.com/message" ,
           {
             content: newMessage,
             chatId: selectedChat,
