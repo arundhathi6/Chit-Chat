@@ -38,7 +38,7 @@ function getSenderPicture(loggedUser,users){
         },
       };
 
-      const { data } = await axios.get("https://my-mern-chit-chat-app.herokuapp.com/chat", config);//show on UI My chat box
+      const { data } = await axios.get("https://chitchat-backend.onrender.com/chat", config);//show on UI My chat box
       //console.log("chat established",data)
       setChats(data);
       //console.log("Chats",chats)
