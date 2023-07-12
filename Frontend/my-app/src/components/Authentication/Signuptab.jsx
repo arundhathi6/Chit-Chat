@@ -52,7 +52,7 @@ function Signuptab() {
             };
 
             const {data} = await axios.post(
-                "https://my-mern-chit-chat-app.herokuapp.com/register", 
+                "https://chitchat-backend.onrender.com/register", 
                 {name:name,
                 email:email,
                 password:password,
