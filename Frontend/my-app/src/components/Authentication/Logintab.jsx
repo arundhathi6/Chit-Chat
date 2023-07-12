@@ -35,7 +35,7 @@ function Logintab() {
           };
 
           const {data} = await axios.post(
-              "https://my-mern-chit-chat-app.herokuapp.com/login", 
+              "https://chitchat-backend.onrender.com/login", 
               {
               email:email,
               password:password,
