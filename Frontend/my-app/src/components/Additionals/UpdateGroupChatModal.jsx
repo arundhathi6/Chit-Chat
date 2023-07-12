@@ -46,7 +46,7 @@ export const UpdateGroupChatModal = ({fetchAgain,setFetchAgain,fetchMessages})=>
               },
             };
             const { data } = await axios.put(
-              `https://my-mern-chit-chat-app.herokuapp.com/groupremove`,
+              `https://chitchat-backend.onrender.com/groupremove`,
               {
                 chatId: selectedChat._id,
                 userId: user1._id,
@@ -103,7 +103,7 @@ export const UpdateGroupChatModal = ({fetchAgain,setFetchAgain,fetchMessages})=>
                 Authorization: `Bearer ${user.token}`,
               },
             };
-            const { data } = await axios.put(`https://my-mern-chit-chat-app.herokuapp.com/groupadd`,
+            const { data } = await axios.put(`https://chitchat-backend.onrender.com/groupadd`,
               {
                 chatId: selectedChat._id,
                 userId: user1._id,
@@ -139,7 +139,7 @@ export const UpdateGroupChatModal = ({fetchAgain,setFetchAgain,fetchMessages})=>
               Authorization: `Bearer ${user.token}`,
             },
           };
-          const { data } = await axios.put(`https://my-mern-chit-chat-app.herokuapp.com/rename`,
+          const { data } = await axios.put(`https://chitchat-backend.onrender.com/rename`,
             {
               chatId: selectedChat._id,
               chatName: groupChatName,
@@ -181,7 +181,7 @@ export const UpdateGroupChatModal = ({fetchAgain,setFetchAgain,fetchMessages})=>
               Authorization: `Bearer ${user.token}`,
             },
           };
-          const { data } = await axios.get(`https://my-mern-chit-chat-app.herokuapp.com/users?search=${search}`, config);
+          const { data } = await axios.get(`https://chitchat-backend.onrender.com/users?search=${search}`, config);
          // console.log("groupmodal",data);
           setLoading(false);
           setSearchResult(data);
