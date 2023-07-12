@@ -75,7 +75,7 @@ import {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const { data } = await axios.get(`https://my-mern-chit-chat-app.herokuapp.com/users?search=${search}`, config);
+        const { data } = await axios.get(`https://chitchat-backend.onrender.com/users?search=${search}`, config);
         //console.log("groupmodal",data);
         setLoading(false);
         setSearchResult(data);
