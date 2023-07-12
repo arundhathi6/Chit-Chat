@@ -59,7 +59,7 @@ function SideBar() {
           },
         };
   
-        const { data } = await axios.get(`https://my-mern-chit-chat-app.herokuapp.com/users?search=${search}`, config);
+        const { data } = await axios.get(`https://chitchat-backend.onrender.com/users?search=${search}`, config);
   
         setLoading(false);
         setSearchResult(data);
@@ -89,7 +89,7 @@ function SideBar() {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const { data } = await axios.post(`https://my-mern-chit-chat-app.herokuapp.com/chat`, { userId }, config);//create environment to chat with selected user
+        const { data } = await axios.post(`https://chitchat-backend.onrender.com/chat`, { userId }, config);//create environment to chat with selected user
         console.log("data",data)
        if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
         setSelectedChat(data);
