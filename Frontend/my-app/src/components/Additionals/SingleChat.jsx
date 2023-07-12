@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom"
  import io from "socket.io-client";
  import {UpdateGroupChatModal} from "./UpdateGroupChatModal";
  import { ChatState } from "../../context/chatContextProvider";
- const ENDPOINT = "https://my-mern-chit-chat-app.herokuapp.com/"
+ const ENDPOINT = "https://chitchat-backend.onrender.com/"
  //https://my-mern-chit-chat-app.herokuapp.com/
  var socket, selectedChatCompare;
 
