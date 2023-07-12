@@ -126,7 +126,6 @@ export const UpdateGroupChatModal = ({fetchAgain,setFetchAgain,fetchMessages})=>
             setLoading(false);
           }
           setGroupChatName("");
-
     }
 
     const handleRename = async()=>{
