@@ -115,7 +115,7 @@ import {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const { data } = await axios.post(`https://my-mern-chit-chat-app.herokuapp.com/group`,
+        const { data } = await axios.post(`https://chitchat-backend.onrender.com/group`,
          
           {
             name: groupChatName,
